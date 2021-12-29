@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 cat -n ip-list.txt
 
 read -rp "Pulse una tecla para continuar : " continue
