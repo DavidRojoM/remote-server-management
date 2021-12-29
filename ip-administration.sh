@@ -1,28 +1,32 @@
 #!/bin/bash
 
-clear
 PS3='Seleccione una opción: '
 options=("Añadir IP" "Borrar IP" "Borrar todas las IPs" "Listar IPs" "Salir")
 select opt in "${options[@]}"
 do
     case $opt in
         "Añadir IP")
-            sh add-ip.sh
+            clear;
+            sh add-ip.sh;
             break
             ;;
         "Borrar IP")
+            clear
             sh delete-ip.sh
             break
             ;;
         "Borrar todas las IPs")
+            clear;
             sh delete-all-ips.sh
             break
             ;;
         "Listar IPs")
+            clear;
             sh list-ips.sh
             break
             ;;
         "Salir")
+            clear;
             sh launcher.sh
             break
             ;;
