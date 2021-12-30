@@ -26,7 +26,6 @@ do
             break
             ;;
         "Salir")
-            clear;
             sh launcher.sh
             break
             ;;
