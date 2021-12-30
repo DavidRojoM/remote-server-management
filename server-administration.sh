@@ -6,11 +6,17 @@ options=("Generar nuevas llaves" "Estado de los servidores" "Espacio libre en se
 select opt in "${options[@]}"
 do
     case $opt in
-        "Administrar IPs")
-            sh check-disk-free.sh
+        "Generar nuevas llaves")
+            sh gen-new-keys.sh
             break;
             ;;
-        "Administrar servidores")
+        "Estado de los servidores")
+            echo "you chose choice 2"
+            ;;
+        "Espacio libre en servidores")
+            echo "you chose choice 2"
+            ;;
+        "Desplegar imagen")
             echo "you chose choice 2"
             ;;
         "Salir")
