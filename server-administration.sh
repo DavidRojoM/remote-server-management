@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clear;
+clear
 PS3='Seleccione una opción: '
 options=("Generar nuevas llaves" "Estado de los servidores" "Espacio libre en servidores" "Desplegar imagen" "Salir")
 select opt in "${options[@]}"
@@ -8,7 +8,7 @@ do
     case $opt in
         "Generar nuevas llaves")
             sh gen-new-keys.sh
-            break;
+            break
             ;;
         "Estado de los servidores")
             echo "you chose choice 2"
