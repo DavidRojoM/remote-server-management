@@ -1,6 +1,6 @@
 .idea/
 ip-list.txt
-server-administration
-server-administration.pub
+server-administration*
+server-administration.pub*
 keys/
-logs/
+logs
