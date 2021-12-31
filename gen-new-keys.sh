@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-if ! [[ -e ip-list.txt ]] || [ "$(cat ip-list.txt | wc -l)" -gt 0 ]; then
+if ! [[ -e ip-list.txt ]] || ! [ "$(cat ip-list.txt | wc -l)" -gt 0 ]; then
   clear
   echo 'No has insertado ninguna ip'
   sleep 1
