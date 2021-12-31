@@ -9,7 +9,11 @@ if ! [[ -e ip-list.txt ]] || ! [ "$(cat ip-list.txt | wc -l)" -gt 0 ]; then
 fi
 
 if [[ -e server-administration-key ]] && [[ -e server-administration-key.pub ]]; then
-  rm -f server-administration-key server-administration-key.pub
+  install -m 700 /dev/null server-administration-key.backup
+  install -m 700 /dev/null server-administration-key.backup.pub
+  cat server-administration-key >server-administration-key.backup
+  cat server-administration-key.pub >server-administration-key.backup.pub
+  mv server-administration-key /dev/null 2>/dev/null
 fi
 ssh-keygen -C server-administration-key -N '' -f server-administration-key <<< y 1>/dev/null 2>>logs/error.log
 clear
