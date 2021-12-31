@@ -20,6 +20,7 @@ do
             echo "you chose choice 2"
             ;;
         "Salir")
+        sh launcher.sh
             break
             ;;
         *) echo "invalid option $REPLY";;
