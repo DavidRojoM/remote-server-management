@@ -15,6 +15,7 @@ do
         "Administrar servidores")
             clear
             sh server-administration.sh
+            break
             ;;
         "Salir")
             clear
