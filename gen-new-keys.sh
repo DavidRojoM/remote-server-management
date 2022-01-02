@@ -1,9 +1,11 @@
 #!/bin/bash
 
+source ./colors.sh
+
 if ! [[ -e ip-list.txt ]] || ! [ "$(cat ip-list.txt | wc -l)" -gt 0 ]; then
   clear
-  echo 'No has insertado ninguna ip'
-  sleep 1
+  echo -e "${YELLOW}No has insertado ninguna ip${ENDCOLOR}"
+  read -rp "Pulse enter para continuar..."
   clear
   sh server-administration.sh
 fi
@@ -34,19 +36,19 @@ while read -r line; do
     successful_update=$(ssh -o StrictHostKeyChecking=no -i server-administration-key -n "$user"@"$ip" "cat ~/.ssh/authorized_keys | grep -i '$new_key' | wc -l" 2>/dev/null)
 
     if [ "$successful_update" -eq 1 ]; then
-      echo 'Actualizado correctamente'
+      echo -e "${GREEN}Actualizado correctamente${ENDCOLOR}"
     else
-      echo 'Error al actualizar la clave'
+      echo -e "${RED}Error al actualizar la clave${ENDCOLOR}"
     fi
   else
-    echo "El server con la ip $ip se encuentra offline"
+    echo -e "${RED}El servidor ${ENDCOLOR}$ip${RED} se encuentra offline${ENDCOLOR}"
     echo "Server ip: $ip offline">logs/error.log
-    sleep 2
+    sleep 3
   fi
 
 done <./ip-list.txt
 
 clear
-echo -e "La nueva key es \n\n$(cat server-administration-key)\n"
+echo -e "${GREEN}La nueva key es \n\n${ENDCOLOR}$(cat server-administration-key)\n"
 read -rp "Presione enter para continuar"
 sh server-administration.sh
