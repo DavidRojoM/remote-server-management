@@ -20,10 +20,11 @@ do
             break
             ;;
         "Desplegar imagen")
-            echo "you chose choice 2"
+            sh docker-administration.sh
+            break
             ;;
         "Atras")
-        sh launcher.sh
+            sh launcher.sh
             break
             ;;
         *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;

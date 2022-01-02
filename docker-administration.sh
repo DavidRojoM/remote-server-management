@@ -1,0 +1,51 @@
+#!/bin/bash
+
+source ./colors.sh
+
+if ! [ -e ip-list.txt ] || [ "$(cat ip-list.txt | wc -l)" -eq 0 ]; then
+    echo -e "\n${YELLOW}Debes insertar alguna ip${ENDCOLOR}\n"
+    read -rp "Presione enter para continuar..."
+    sh server-administration.sh
+fi
+
+ipListLength="$(cat ip-list.txt | wc -l)"
+cat -n ip-list.txt
+echo '0. Salir'
+
+read -rp "Seleccione una ip : " option
+
+if [ "$option" -eq 0 ]; then
+    clear
+    sh server-administration.sh
+fi
+
+
+if ! [ "$option" -le "$ipListLength" ] || ! [ "$option" -ge 1 ]; then
+        clear
+        echo -e "\n${YELLOW}Debes seleccionar una ip de la lista${ENDCOLOR}\n"
+        sleep 1
+        clear
+        sh docker-administration.sh
+fi
+
+source ./check-docker-installed.sh
+
+user=$(cut ip-list.txt -f1 | sed "$option!d")
+ip=$(cut ip-list.txt -f2 | sed "$option!d")
+
+if is_docker_installed "$user" "$ip"; then
+ echo -e "${RED}\nDocker no está instalado en el servidor${ENDCOLOR}\n"
+ read -rp "Pulse enter para continuar..."
+ sh server-administration.sh
+fi
+
+
+echo -e "${GREEN}Docker instalado en servidor${ENDCOLOR}"
+read -rp "Introduzca una imagen de Docker Hub: " image
+read -rp "En que puerto interno se ejecuta la imagen?: " inner_port
+read -rp "En que puerto externo se ejecuta la imagen?: " outter_port
+#TODO: BINDEAR VOLUMENES DEL SERVIDOR A LA IMAGEN
+ssh -o StrictHostKeyChecking=no -i server-administration-key -n "$user@$ip" "docker run -d -p $outter_port:$inner_port $image "
+echo
+read -rp "Pulse enter para continuar..."
+sh server-administration.sh
