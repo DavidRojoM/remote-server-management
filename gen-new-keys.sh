@@ -48,7 +48,6 @@ while read -r line; do
 
 done <./ip-list.txt
 
-clear
 echo -e "${GREEN}La nueva key es \n\n${ENDCOLOR}$(cat server-administration-key)\n"
-read -rp "Presione enter para continuar"
+read -rp "Presione enter para continuar..."
 sh server-administration.sh
