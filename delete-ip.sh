@@ -1,8 +1,11 @@
 #!/bin/bash
 
+source ./colors.sh
+
+
 if ! [[ -e ip-list.txt ]]; then
-  echo 'No hay ninguna ip'
-  sleep 1
+    echo -e "\n${YELLOW}Debes insertar alguna ip${ENDCOLOR}\n"
+    read -rp "Presione enter para continuar..."
   sh ip-administration.sh
 fi
 
@@ -20,17 +23,24 @@ fi
 
 if ! [ "$option" -le "$ipListLength" ] && [ "$option" -ge 1 ]; then
         clear
-        echo 'Debes seleccionar una ip de la lista'
+        echo -e "\n${YELLOW}Debes seleccionar una ip de la lista${ENDCOLOR}\n"
         sleep 1
         clear
         sh delete-ip.sh
 fi
 
 
-
+before=$(cat ip-list.txt | wc -l)
 sed "${option}d" ip-list.txt>tmp.txt
 cat tmp.txt> ip-list.txt
 rm -f tmp.txt
+after=$(cat ip-list.txt | wc -l)
+
+if [ "$before" -gt "$after" ]; then
+    echo -e "\n${GREEN}Eliminado correctamente${ENDCOLOR}\n"
+    else echo -e "\n${RED}No se ha podido eliminar${ENDCOLOR}\n"
+fi
+read -rp "Presione enter para continuar..."
 clear
 sh ip-administration.sh
 
