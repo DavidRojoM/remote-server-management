@@ -1,8 +1,9 @@
 #!/bin/bash
 
 clear
+source ./colors.sh
 PS3='Seleccione una opción: '
-options=("Generar nuevas llaves" "Estado de los servidores" "Espacio libre en servidores" "Desplegar imagen" "Salir")
+options=("Generar nuevas llaves" "Estado de los servidores" "Espacio libre en servidores" "Desplegar imagen" "Atras")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -11,7 +12,8 @@ do
             break
             ;;
         "Estado de los servidores")
-            echo "you chose choice 2"
+            sh server-status.sh
+            break
             ;;
         "Espacio libre en servidores")
             echo "you chose choice 2"
@@ -19,10 +21,10 @@ do
         "Desplegar imagen")
             echo "you chose choice 2"
             ;;
-        "Salir")
+        "Atras")
         sh launcher.sh
             break
             ;;
-        *) echo "invalid option $REPLY";;
+        *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;
     esac
 done
