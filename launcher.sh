@@ -1,6 +1,7 @@
 #!/bin/bash
 
 clear;
+source ./colors.sh
 
 PS3='Seleccione una opción: '
 options=("Administrar IPs" "Administrar servidores" "Salir")
@@ -21,6 +22,7 @@ do
             clear
             break
             ;;
-        *) echo "invalid option $REPLY";;
+        *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;
+
     esac
 done
