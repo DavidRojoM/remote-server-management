@@ -1,7 +1,9 @@
 #!/bin/bash
 
+source ./colors.sh
+
 PS3='Seleccione una opción: '
-options=("Añadir IP" "Borrar IP" "Borrar todas las IPs" "Listar IPs" "Salir")
+options=("Añadir IP" "Borrar IP" "Borrar todas las IPs" "Listar IPs" "Atras")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -25,11 +27,11 @@ do
             sh list-ips.sh
             break
             ;;
-        "Salir")
+        "Atras")
             sh launcher.sh
             break
             ;;
-        *) echo "invalid option $REPLY";;
+        *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;
     esac
 done
 
