@@ -16,7 +16,8 @@ do
             break
             ;;
         "Espacio libre en servidores")
-            echo "you chose choice 2"
+            sh check-disk-free.sh
+            break
             ;;
         "Desplegar imagen")
             echo "you chose choice 2"
