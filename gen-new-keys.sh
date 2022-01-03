@@ -29,6 +29,7 @@ while read -r line; do
   ip=$(echo "$line" | cut -f2)
     echo "Actualizando $ip..."
   if is_server_online "$ip"; then
+    ssh -o StrictHostKeyChecking=no -i server-administration-key.backup -n "$user"@"$ip" "mkdir ~/.ssh;" 2>/dev/null
     scp -o StrictHostKeyChecking=no -i server-administration-key.backup server-administration-key.pub "$user"@"$ip":~/.ssh/server-administration-key.pub 1>/dev/null 2>/dev/null
     ssh -o StrictHostKeyChecking=no -i server-administration-key.backup -n "$user"@"$ip" "touch ~/.ssh/authorized_keys;grep -v 'server-administration-key' ~/.ssh/authorized_keys>~/.ssh/authorized_keys.tmp;cat ~/.ssh/server-administration-key.pub>>~/.ssh/authorized_keys.tmp;mv ~/.ssh/authorized_keys.tmp ~/.ssh/authorized_keys;rm -f ~/.ssh/server-administration-key.pub" 2>/dev/null
     new_key=$(cat server-administration-key.pub)
