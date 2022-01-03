@@ -33,10 +33,16 @@ source ./check-docker-installed.sh
 user=$(cut ip-list.txt -f1 | sed "$option!d")
 ip=$(cut ip-list.txt -f2 | sed "$option!d")
 
-if is_docker_installed "$user" "$ip"; then
+if ! is_docker_installed "$user" "$ip"; then
  echo -e "${RED}\nDocker no está instalado en el servidor${ENDCOLOR}\n"
- read -rp "Pulse enter para continuar..."
- sh server-administration.sh
+while [ "$wants_to_install" != "yes" ] && [ "$wants_to_install" != "no" ]; do
+ read -rp "Desea instalar Docker?(yes/no)" wants_to_install
+done
+
+if [ "$wants_to_install" == "yes" ]; then
+    ssh -o StrictHostKeyChecking=no -i server-administration-key -t "$user@$ip" "curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && sudo usermod -aG docker $user && rm -f get-docker.sh" # && su - $user
+    else  sh server-administration.sh
+fi
 fi
 
 
