@@ -5,8 +5,8 @@ user=$1
 ip=$2
 
  isInstalled=$(ssh -o StrictHostKeyChecking=no -i server-administration-key -n "$user@$ip" "which docker | grep -c '/docker'")
-if [ "$isInstalled" == 0 ];then
-return 0
-else return 1
+if [ "$isInstalled" -eq 0 ];then
+return 1
+else return 0
 fi
 }
