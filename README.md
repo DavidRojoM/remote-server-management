@@ -10,3 +10,4 @@
 - [ ] Remote docker container listing
 - [ ] Remote docker container management
 - [ ] Restructure project
+- [ ] Interrupt thread on ssh password entry miss
