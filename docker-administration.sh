@@ -33,6 +33,15 @@ source ./check-docker-installed.sh
 user=$(cut ip-list.txt -f1 | sed "$option!d")
 ip=$(cut ip-list.txt -f2 | sed "$option!d")
 
+source ./check-server-status.sh
+
+if ! is_server_online "$ip"; then
+     echo -e "${RED}\nEl servidor esta Offline${ENDCOLOR}\n"
+     read -rp "Presione enter para continuar..."
+     clear
+     sh docker-administration.sh
+fi
+
 if ! is_docker_installed "$user" "$ip"; then
  echo -e "${RED}\nDocker no está instalado en el servidor${ENDCOLOR}\n"
 while [ "$wants_to_install" != "yes" ] && [ "$wants_to_install" != "no" ]; do
