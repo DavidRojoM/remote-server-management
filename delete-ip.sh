@@ -5,7 +5,7 @@ source ./colors.sh
 if ! [[ -e ip-list.txt ]]; then
     echo -e "\n${YELLOW}Debes insertar alguna ip${ENDCOLOR}\n"
     read -rp "Presione enter para continuar..."
-  sh ip-administration.sh
+  bash ip-administration.sh
 fi
 
 ipListLength="$(cat ip-list.txt | wc -l)"
@@ -16,7 +16,7 @@ read -rp "Seleccione una opción : " option
 
 if [ "$option" -eq 0 ]; then
     clear
-    sh ip-administration.sh
+    bash ip-administration.sh
 fi
 
 
@@ -25,7 +25,7 @@ if ! [ "$option" -le "$ipListLength" ] || ! [ "$option" -ge 1 ]; then
         echo -e "\n${YELLOW}Debes seleccionar una ip de la lista${ENDCOLOR}\n"
         sleep 1
         clear
-        sh delete-ip.sh
+        bash delete-ip.sh
 fi
 
 before=$(cat ip-list.txt | wc -l)
@@ -40,4 +40,4 @@ if [ "$before" -gt "$after" ]; then
 fi
 read -rp "Presione enter para continuar..."
 clear
-sh ip-administration.sh
+bash ip-administration.sh

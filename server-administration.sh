@@ -8,23 +8,23 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Generar nuevas llaves")
-            sh gen-new-keys.sh
+            bash gen-new-keys.sh
             break
             ;;
         "Estado de los servidores")
-            sh server-status.sh
+            bash server-status.sh
             break
             ;;
         "Espacio libre en servidores")
-            sh check-disk-free.sh
+            bash check-disk-free.sh
             break
             ;;
         "Desplegar imagen")
-            sh docker-administration.sh
+            bash docker-administration.sh
             break
             ;;
         "Atras")
-            sh launcher.sh
+            bash launcher.sh
             break
             ;;
         *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;

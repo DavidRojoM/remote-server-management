@@ -9,4 +9,4 @@ fi
 
 read -rp "Pulse enter para continuar... "
 clear;
-sh ip-administration.sh
+bash ip-administration.sh

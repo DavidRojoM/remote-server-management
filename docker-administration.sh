@@ -5,7 +5,7 @@ source ./colors.sh
 if ! [ -e ip-list.txt ] || [ "$(cat ip-list.txt | wc -l)" -eq 0 ]; then
     echo -e "\n${YELLOW}Debes insertar alguna ip${ENDCOLOR}\n"
     read -rp "Presione enter para continuar..."
-    sh server-administration.sh
+    bash server-administration.sh
 fi
 
 ipListLength="$(cat ip-list.txt | wc -l)"
@@ -16,7 +16,7 @@ read -rp "Seleccione una ip : " option
 
 if [ "$option" -eq 0 ]; then
     clear
-    sh server-administration.sh
+    bash server-administration.sh
 fi
 
 
@@ -25,7 +25,7 @@ if ! [ "$option" -le "$ipListLength" ] || ! [ "$option" -ge 1 ]; then
         echo -e "\n${YELLOW}Debes seleccionar una ip de la lista${ENDCOLOR}\n"
         sleep 1
         clear
-        sh docker-administration.sh
+        bash docker-administration.sh
 fi
 
 source ./check-docker-installed.sh
@@ -39,7 +39,7 @@ if ! is_server_online "$ip"; then
      echo -e "${RED}\nEl servidor esta Offline${ENDCOLOR}\n"
      read -rp "Presione enter para continuar..."
      clear
-     sh docker-administration.sh
+     bash docker-administration.sh
 fi
 
 if ! is_docker_installed "$user" "$ip"; then
@@ -50,7 +50,7 @@ done
 
 if [ "$wants_to_install" == "yes" ]; then
     ssh -o StrictHostKeyChecking=no -i server-administration-key -t "$user@$ip" "curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && sudo usermod -aG docker $user && rm -f get-docker.sh" # && su - $user
-    else  sh server-administration.sh
+    else  bash server-administration.sh
 fi
 fi
 
@@ -63,4 +63,4 @@ read -rp "En que puerto externo se ejecuta la imagen?: " outter_port
 ssh -o StrictHostKeyChecking=no -i server-administration-key -n "$user@$ip" "docker run -d -p $outter_port:$inner_port $image "
 echo
 read -rp "Pulse enter para continuar..."
-sh server-administration.sh
+bash server-administration.sh

@@ -9,26 +9,26 @@ do
     case $opt in
         "Añadir IP")
             clear;
-            sh add-ip.sh;
+            bash add-ip.sh;
             break
             ;;
         "Borrar IP")
             clear
-            sh delete-ip.sh
+            bash delete-ip.sh
             break
             ;;
         "Borrar todas las IPs")
             clear;
-            sh delete-all-ips.sh
+            bash delete-all-ips.sh
             break
             ;;
         "Listar IPs")
             clear;
-            sh list-ips.sh
+            bash list-ips.sh
             break
             ;;
         "Atras")
-            sh launcher.sh
+            bash launcher.sh
             break
             ;;
         *) echo -e "${YELLOW}invalid option $REPLY${ENDCOLOR}";;
