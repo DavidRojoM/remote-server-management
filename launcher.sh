@@ -10,12 +10,12 @@ do
     case $opt in
         "Administrar IPs")
             clear
-            sh ip-administration.sh
+            bash ip-administration.sh
             break
             ;;
         "Administrar servidores")
             clear
-            sh server-administration.sh
+            bash server-administration.sh
             break
             ;;
         "Salir")

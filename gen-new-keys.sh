@@ -7,7 +7,7 @@ if ! [[ -e ip-list.txt ]] || ! [ "$(cat ip-list.txt | wc -l)" -gt 0 ]; then
   echo -e "${YELLOW}No has insertado ninguna ip${ENDCOLOR}"
   read -rp "Pulse enter para continuar..."
   clear
-  sh server-administration.sh
+  bash server-administration.sh
 fi
 
 if [[ -e server-administration-key ]] && [[ -e server-administration-key.pub ]]; then
@@ -51,4 +51,4 @@ done <./ip-list.txt
 
 echo -e "${GREEN}La nueva key es \n\n${ENDCOLOR}$(cat server-administration-key)\n"
 read -rp "Presione enter para continuar..."
-sh server-administration.sh
+bash server-administration.sh
