@@ -15,4 +15,4 @@
 ## INSTALLATION AND USAGE
 
 1. `git clone git@github.com:DavidRojoM/remote-server-manager.git && cd remote-server-manager`
-2. `sh launcher.sh`
+2. `bash launcher.sh`
